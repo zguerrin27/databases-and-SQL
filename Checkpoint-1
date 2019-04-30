@@ -1,0 +1,48 @@
+1. 
+
+1. string 
+2. integer
+3. number
+4. float
+5. undefined
+
+2.
+
+You would use a database if you want/need your data to persist. You would use a text file for informing or basic outlining for another human.
+
+3.
+
+SQL is a declarative rather than a procedural language...
+
+4.
+
+A database has a way of being interacted with..either through the command line, a GUI or an application that manages requests through a servver. The database stores all of the data allowing it to last or 'persist' once the program is ended on your computer. The database stores all of your data in binary files, and keep the data structured. The database uses Structured Querey language to manipulate data making them powerful. 
+
+5.
+
+A table is a data structure that is used to organize data in a database. A row is an entry and the corisponding atributes values. A colum is a section of the table...and outlines the type of value that is in each cell below it...and a value is the data in the cell.
+
+6.
+
+A string, integer and float.
+
+7. 
+
+Select the date and amount colums from the payments table.
+Select the amount colum from the payments table where the amount is greater than 500.
+Select all colums from the payments table where the payee is 'Mega Foods'.
+
+8.
+
+SELECT email, signup
+FROM users
+WHERE name = 'DeAndre Data';
+
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+SELECT *
+FROM users
+WHERE userid = 4;
+
