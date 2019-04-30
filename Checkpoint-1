@@ -4,7 +4,7 @@
 2. integer
 3. number
 4. float
-5. undefined
+5. You actually have to create a money class or object because this is not a first class data type. There are a lot of libraries that you can download to help you with it.
 
 2.
 
@@ -34,15 +34,36 @@ Select all colums from the payments table where the payee is 'Mega Foods'.
 
 8.
 
-SELECT email, signup
-FROM users
-WHERE name = 'DeAndre Data';
+**Query #1**
 
-SELECT userid
-FROM users
-WHERE email = 'aleesia.algorithm@uw.edu';
+    SELECT email, signup
+    FROM users
+    WHERE name = 'DeAndre Data';
 
-SELECT *
-FROM users
-WHERE userid = 4;
+| email             | signup                   |
+| ----------------- | ------------------------ |
+| datad@comcast.net | 2008-01-20T00:00:00.000Z |
 
+---
+**Query #2**
+
+    SELECT userid
+    FROM users
+    WHERE email = 'aleesia.algorithm@uw.edu';
+
+| userid |
+| ------ |
+| 1      |
+
+---
+**Query #3**
+
+    SELECT *
+    FROM users
+    WHERE userid = 4;
+
+| userid | name           | email             | signup                   |
+| ------ | -------------- | ----------------- | ------------------------ |
+| 4      | Brandy Boolean | bboolean@nasa.gov | 1999-10-15T00:00:00.000Z |
+
+---
