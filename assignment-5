@@ -1,0 +1,129 @@
+1.
+
+SELECT title
+FROM books
+WHERE title LIKE 'The%';
+
+2.
+
+SELLECT THE blahhh Col
+FROM the blahhh table 
+WHERE the blahh condition is met
+
+3.
+
+SELECT name, gender, age
+FROM dogs
+WHERE breed LIKE '%labrador%';
+
+SELECT id
+FROM dogs
+WHERE age < 1;
+
+SELECT name, age  
+FROM dogs
+WHERE gender = 'F'
+AND weight > 35;
+
+SELECT *
+FROM dogs
+WHERE breed NOT LIKE '%shepherd%';
+
+SELECT id, age, weight, breed
+FROM dogs
+WHERE weight > 60
+OR breed LIKE '%great dane%';
+
+4.
+
+SELECT name, adoption_date FROM cats;
+
+| name     | adoption_date            |
+| -------- | ------------------------ |
+| Mushi    | 2016-03-22T00:00:00.000Z |
+| Seashell |      null                |
+| Azul     | 2016-04-17T00:00:00.000Z |
+| Victoire | 2016-09-01T00:00:00.000Z |
+| Nala     |      null                |
+
+SELECT name, age FROM cats;
+
+| name     | age |
+| -------- | --- |
+| Mushi    | 1   |
+| Seashell | 7   |
+| Azul     | 3   |
+| Victoire | 7   |
+| Nala     | 1   |
+
+5.
+
+SELECT *
+FROM cats;
+
+SELECT name, gender
+FROM cats
+WHERE age = 7;
+
+SELECT name
+FROM cats;
+
+6.
+
+< less than.... 5 is less than 10
+> greater than..... 20 is greater than 10
+= equal to.... 'Tom' is equal to 'Tom'
+<= less than or equal to....5 is less than or equal to 10
+>= greater than or equal to...20 is greater than or equal to 10
+<> greater than or less than.. another way of saying not equal to...20 is greater than or less than 200
+LIKE used with strings to find partial matches.. WHERE breed LIKE '%labrador%'
+
+7.
+
+
+SELECT name
+FROM cats
+WHERE gender = 'F';
+
+| name     |
+| -------- |
+| Seashell |
+| Nala     |
+
+
+SELECT name FROM cats WHERE age <> 3;
+
+| name     |
+| -------- |
+| Mushi    |
+| Seashell |
+| Victoire |
+| Nala     |
+
+
+****
+SELECT ID
+FROM cats
+WHERE name != ‘Mushi’
+AND gender = ‘M’;             ....This produces an error...because the quotes are not correct..
+
+Query Error: error: column "‘mushi’" does not exist
+
+****
+ 
+SELECT ID
+FROM cats
+WHERE name != 'Mushi'
+AND gender = 'M';     ..... This produces the following ....
+
+
+SELECT ID
+FROM cats
+WHERE name != 'Mushi'
+AND gender = 'M';
+
+| id  |
+| --- |
+| 3   |
+| 4   |
+
