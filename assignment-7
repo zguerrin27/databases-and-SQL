@@ -1,0 +1,244 @@
+1.
+
+With an Inner Join.
+
+2.
+
+customers                           cities
+customer_id , customer              id, city
+1           , Zach                  1 , Manchester
+2           , Teddy                 2 , Orlando
+3           , Jose                  3 , Manhattan
+4           , Rhonda                5 , Berlin
+
+
+INNER - an inner join will return all of the columns you are asking for if the ON clause is true, like when there is a match. An example would be looking up cities that customers are from. If you had 2 tables, one with customers and customer_id, and the other had cities and an id column...then an inner join would look like:
+
+SELECT * FROM customers JOIN cities ON customers.customer_id=cities.id;
+
+Zach, Manchester
+Teddy, Orlando
+Jose, Manhattan
+
+
+LEFT OUTER JOIN - a left outer join will return all of the matches like the inner join, and it will return the rows of the left table that do not have a match on the right table..
+
+SELECT * FROM customers LEFT JOIN cities ON customers.customer_id = cities.id;
+
+Zach, Manchester
+Teddy, Orlando
+Jose, Manhattan
+Rhonda, NULL
+
+
+RIGHT OUTER JOIN - a right outer join will run an inner join, return the matches and the rest of the rows in the right table.
+
+SELECT * FROM customers RIGHT JOIN cities ON customers.customer_id = cities.id;
+
+Zach, Manchester
+Teddy, Orlando
+Jose, Manhattan
+NULL, Berlin
+
+3.
+
+A primary Key exsits once in a table...in my example above the customer_id in the customers table is the primary key...If I added a column called 'city_id' that would be known as a foreign key..A foreign key is used to link tables and usually corresponds to a primary key in another table. 
+
+customers  (customers.city_id = foreign key)       cities  (cities.id = primary key)
+customer_id , customer, city_id                    id, city
+1           , Zach    , 1                          1 , Manchester
+2           , Teddy   , 2                          2 , Orlando
+3           , Jose    , 3                          3 , Manhattan
+4           , Rhonda  , 4                          5 , Berlin
+
+
+4.
+
+its when you create a short version of a longer table name in a query.
+
+5.
+
+SELECT p.name, c.salary, c.vacation_days
+FROM professor AS p
+JOIN compensation AS c
+ON p.id = c.professor_id;
+
+6.
+
+NATURAL is the shorthand version of writing USING...you would use NATURAL if you wanted to get the results from every matching column in two tables. 
+
+7.
+
+**Query #1**
+
+    SELECT employees.name, shifts.date, shifts.start_time, shifts.end_time
+    FROM employees 
+    RIGHT JOIN shifts
+    ON employees.id = shifts.id;
+
+| name               | date       | start_time | end_time |
+| ------------------ | ---------- | ---------- | -------- |
+| Hermione Granger   | 1998-03-09 | 08:00:00   | 12:00:00 |
+| Ronald Weasley     | 1998-03-09 | 08:00:00   | 16:00:00 |
+| Luna Lovegood      | 1998-03-09 | 12:00:00   | 16:00:00 |
+| Draco Malfoy       | 1998-03-09 | 12:00:00   | 20:00:00 |
+| Padma Patil        | 1998-03-09 | 16:00:00   | 20:00:00 |
+| Neville Longbottom | 1998-03-10 | 08:00:00   | 12:00:00 |
+| Cedric Diggory     | 1998-03-10 | 08:00:00   | 16:00:00 |
+| Cho Chang          | 1998-03-10 | 12:00:00   | 16:00:00 |
+| Dean Thomas        | 1998-03-10 | 12:00:00   | 20:00:00 |
+|                    | 1998-03-13 | 16:00:00   | 20:00:00 |
+|                    | 1998-03-12 | 08:00:00   | 16:00:00 |
+|                    | 1998-03-10 | 16:00:00   | 20:00:00 |
+|                    | 1998-03-11 | 16:00:00   | 20:00:00 |
+|                    | 1998-03-13 | 08:00:00   | 12:00:00 |
+|                    | 1998-03-13 | 12:00:00   | 20:00:00 |
+|                    | 1998-03-13 | 12:00:00   | 16:00:00 |
+|                    | 1998-03-12 | 16:00:00   | 20:00:00 |
+|                    | 1998-03-11 | 08:00:00   | 12:00:00 |
+|                    | 1998-03-11 | 08:00:00   | 16:00:00 |
+|                    | 1998-03-12 | 12:00:00   | 16:00:00 |
+|                    | 1998-03-11 | 12:00:00   | 16:00:00 |
+|                    | 1998-03-12 | 12:00:00   | 20:00:00 |
+|                    | 1998-03-12 | 08:00:00   | 12:00:00 |
+|                    | 1998-03-13 | 08:00:00   | 16:00:00 |
+|                    | 1998-03-11 | 12:00:00   | 20:00:00 |
+
+---
+
+8.
+
+**Query #1**
+
+    SELECT volunteers.first_name,volunteers.last_name, dogs.name
+    FROM dogs
+    RIGHT JOIN volunteers
+    ON dogs.id = volunteers.foster_dog_id;
+
+| first_name | last_name  | name      |
+| ---------- | ---------- | --------- |
+| Rubeus     | Hagrid     | Munchkin  |
+| Marjorie   | Dursley    | Marmaduke |
+| Sirius     | Black      |           |
+| Remus      | Lupin      |           |
+| Albus      | Dumbledore |           |
+
+---
+
+**Query #2**
+
+    SELECT cats.name, adopters.first_name, adopters.last_name, cat_adoptions.date
+    FROM adopters
+    JOIN cat_adoptions ON adopters.id = cat_adoptions.adopter_id
+    JOIN cats ON cat_adoptions.cat_id = cats.id;
+
+| name     | first_name | last_name | date                     |
+| -------- | ---------- | --------- | ------------------------ |
+| Azul     | Hermione   | Granger   | 2019-04-02T00:00:00.000Z |
+| Mushi    | Arabella   | Figg      | 2019-04-27T00:00:00.000Z |
+| Victoire | Argus      | Filch     | 2019-05-02T00:00:00.000Z |
+
+---
+**Query #3**
+
+    SELECT adopters.first_name, adopters.last_name
+    FROM adopters
+    JOIN dog_adoptions
+    ON adopters.id != dog_adoptions.adopter_id;
+
+| first_name | last_name |
+| ---------- | --------- |
+| Hermione   | Granger   |
+| Arabella   | Figg      |
+
+---
+**Query #4**
+
+    SELECT dogs.name
+    FROM dogs
+    JOIN dog_adoptions
+    ON dog_adoptions.dog_id != dogs.id;
+
+    SELECT cats.name
+    FROM cats
+    JOIN cat_adoptions
+    ON cat_adoptions.cat_id != cats.id;
+
+| name      |
+| --------- |
+| Boujee    |
+| Munchkin  |
+| Marley    |
+| Lassie    |
+| Marmaduke |
+
+| name     |
+| -------- |
+| Mushi    |
+| Seashell |
+| Victoire |
+| Nala     |
+| Seashell |
+| Azul     |
+| Victoire |
+| Nala     |
+| Mushi    |
+| Seashell |
+| Azul     |
+| Nala     |
+
+---
+**Query #6**
+
+    SELECT adopters.first_name, adopters.last_name
+    FROM adopters	
+    WHERE adopters.id = (
+    	SELECT dog_adoptions.adopter_id
+      	FROM dog_adoptions
+      	JOIN dogs
+      	ON dog_adoptions.dog_id = dogs.id
+    );
+
+| first_name | last_name |
+| ---------- | --------- |
+| Argus      | Filch     |
+
+9.
+
+**Query #1**
+
+    SELECT patrons.name, holds.rank
+    FROM holds
+    JOIN patrons
+    	ON patrons.id = holds.patron_id
+    JOIN books
+        ON holds.isbn = books.isbn
+        WHERE books.title = 'Advanced Potion-Making'
+    ORDER BY rank;
+
+| name           | rank |
+| -------------- | ---- |
+| Terry Boot     | 1    |
+| Cedric Diggory | 2    |
+
+---
+**Query #2**
+
+    SELECT patrons.name, books.title
+    FROM patrons
+    JOIN transactions
+    	ON patrons.id = transactions.patron_id
+    JOIN books
+    	ON books.isbn = transactions.isbn;
+
+| name             | title                                   |
+| ---------------- | --------------------------------------- |
+| Hermione Granger | Hogwarts: A History                     |
+| Cho Chang        | Advanced Potion-Making                  |
+| Terry Boot       | Fantastic Beasts and Where to Find Them |
+| Padma Patil      | Fantastic Beasts and Where to Find Them |
+| Terry Boot       | Advanced Potion-Making                  |
+| Hermione Granger | Fantastic Beasts and Where to Find Them |
+| Cedric Diggory   | Fantastic Beasts and Where to Find Them |
+
+---
