@@ -222,24 +222,20 @@ NATURAL is the shorthand version of writing USING...you would use NATURAL if you
 | Cedric Diggory | 2    |
 
 ---
+
 **Query #2**
 
     SELECT patrons.name, books.title
     FROM patrons
-    JOIN transactions
-    	ON patrons.id = transactions.patron_id
-    JOIN books
-    	ON books.isbn = transactions.isbn
-    WHERE transactions.checked_in_date IS NULL;
+    LEFT OUTER JOIN transactions ON transactions.patron_id = patrons.id AND transactions.checked_in_date IS NULL
+    LEFT OUTER JOIN books ON books.isbn = transactions.isbn;
 
 | name             | title                                   |
 | ---------------- | --------------------------------------- |
-| Hermione Granger | Hogwarts: A History                     |
-| Cho Chang        | Advanced Potion-Making                  |
-| Terry Boot       | Fantastic Beasts and Where to Find Them |
-| Padma Patil      | Fantastic Beasts and Where to Find Them |
+| Hermione Granger |                                         |
 | Terry Boot       | Advanced Potion-Making                  |
-| Hermione Granger | Fantastic Beasts and Where to Find Them |
+| Padma Patil      |                                         |
+| Cho Chang        |                                         |
 | Cedric Diggory   | Fantastic Beasts and Where to Find Them |
 
 ---
