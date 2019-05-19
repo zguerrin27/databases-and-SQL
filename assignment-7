@@ -229,7 +229,8 @@ NATURAL is the shorthand version of writing USING...you would use NATURAL if you
     JOIN transactions
     	ON patrons.id = transactions.patron_id
     JOIN books
-    	ON books.isbn = transactions.isbn;
+    	ON books.isbn = transactions.isbn
+    WHERE transactions.checked_in_date IS NULL;
 
 | name             | title                                   |
 | ---------------- | --------------------------------------- |
